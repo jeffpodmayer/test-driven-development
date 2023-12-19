@@ -15,7 +15,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 		return true;
 	}
 
-	public boolean add(int index, T item) throws IndexOutOfBoundsException {
+	public boolean add(int index, T item) {
 		if (index < 0 || index > size) {
 			throw new ArrayIndexOutOfBoundsException("Index does not exist");
 		} else {
