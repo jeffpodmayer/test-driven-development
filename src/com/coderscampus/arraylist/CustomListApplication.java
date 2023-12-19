@@ -39,12 +39,44 @@ public class CustomListApplication {
 
 			System.out.println("Get Indexed Item: ");
 			System.out.println(trailsList.get(17));
-			
 			System.out.println("-----------");
-			System.out.println(trailsList.remove(9));
 			
-			System.out.println("-----------");
+			System.out.println("Added to Index: ");
 			System.out.println(trailsList.add(3,"String"));
+			System.out.println("-----------");
+			
+			System.out.println("Added Item: ");
+			trailsList.add("Program Trail");
+			System.out.println("-----------");
+			
+			System.out.println("Array Size: ");
+			System.out.println(trailsList.getSize());
+			System.out.println("-----------");
+			
+			System.out.println("Removed Item: ");
+			System.out.println(trailsList.remove(9));
+			System.out.println("-----------");
+			
+			System.out.println("Array Size: ");
+			System.out.println(trailsList.getSize());
+			System.out.println("-----------");
+			
+			System.out.println("Removed Item: ");
+			System.out.println(trailsList.remove(13));
+			System.out.println("-----------");
+			
+			System.out.println("Removed Item: ");
+			System.out.println(trailsList.remove(15));
+			System.out.println("-----------");
+			
+			System.out.println("Array Size: ");
+			System.out.println(trailsList.getSize());
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index: ");
+			System.out.println(trailsList.add(20,"Eagles 33"));
+			System.out.println("-----------");
+			
 			
 			
 		}

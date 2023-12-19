@@ -56,3 +56,4 @@ class CustomArrayListTest {
 		assertEquals(9, sut.getSize() - 1);
 	}
 }
+

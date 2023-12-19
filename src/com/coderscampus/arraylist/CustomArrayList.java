@@ -21,7 +21,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 		} else {
 
 			for (int i = size; i > index; i--) {
-				items[i] = items[i - 1];
+				items[i] = items[i-1];
 			}
 
 			items[index] = item;
@@ -53,8 +53,9 @@ public class CustomArrayList<T> implements CustomList<T> {
 		for (int i = index; i < size - 1; i++) {
 			items[i] = items[i + 1];
 		}
-
-		items = Arrays.copyOf(items, size - 1);
+		
+		size--;
+		items = Arrays.copyOf(items, size);
 
 		System.out.println(Arrays.toString(items));
 		System.out.println("-----------");
