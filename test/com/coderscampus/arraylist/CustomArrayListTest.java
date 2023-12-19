@@ -42,7 +42,13 @@ class CustomArrayListTest {
 			sut.add(i);
 		}
 		sut.add(4, 5);
-		assertEquals(12, sut.getSize());
+		sut.add(5, 5);
+		sut.add(6, 5);
+		sut.add(7, 5);
+		sut.add(8, 5);
+		sut.add(9, 5);
+		sut.add(10, 5);
+		assertEquals(18, sut.getSize());
 	}
 
 	@Test
@@ -53,7 +59,7 @@ class CustomArrayListTest {
 			sut.add(i);
 		}
 		sut.remove(8);
-		assertEquals(9, sut.getSize() - 1);
+		assertEquals(9, sut.getSize());
 	}
 }
 

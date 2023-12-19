@@ -16,17 +16,21 @@ public class CustomArrayList<T> implements CustomList<T> {
 	}
 
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		if (index < 0 || index > size) {
-			throw new IndexOutOfBoundsException("Out of Bounds");
+		if (index < 0 || index >= size) {
+			throw new ArrayIndexOutOfBoundsException("That index does not exist within the Array");
 		} else {
 
 			for (int i = size; i > index; i--) {
-				items[i] = items[i-1];
+				if (size == items.length) {
+					items = Arrays.copyOf(items, items.length * 2);
+					
+				}
+				items[i] = items[i - 1];
 			}
+			size++;
 
 			items[index] = item;
-			size++;
-			items = Arrays.copyOf(items, size);
+		//	items = Arrays.copyOf(items, size);
 
 			System.out.println(Arrays.toString(items));
 		}
@@ -41,25 +45,29 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T get(int index) {
+	public T get(int index) throws IndexOutOfBoundsException {
 		return (T) items[index];
 
 	}
 
 	@SuppressWarnings("unchecked")
 	public T remove(int index) throws IndexOutOfBoundsException {
-		T itemToRemove = (T) items[index];
+		if (index < 0 || index >= size) {
+			throw new ArrayIndexOutOfBoundsException("That index does not exist within the Array");
+		} else {
+			T itemToRemove = (T) items[index];
 
-		for (int i = index; i < size - 1; i++) {
-			items[i] = items[i + 1];
+			for (int i = index; i < size - 1; i++) {
+				items[i] = items[i + 1];
+			}
+
+			size--;
+
+			items = Arrays.copyOf(items, size);
+
+//		System.out.println(Arrays.toString(items));
+			return itemToRemove;
 		}
-		
-		size--;
-		items = Arrays.copyOf(items, size);
-
-		System.out.println(Arrays.toString(items));
-		System.out.println("-----------");
-		return itemToRemove;
 	}
 
 	@Override
