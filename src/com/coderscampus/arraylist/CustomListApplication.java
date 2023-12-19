@@ -108,8 +108,8 @@ public class CustomListApplication {
 			System.out.println(trailsList.get(17));
 			System.out.println("-----------");
 			
-			System.out.println("Added to Index 18: ");
-			System.out.println(trailsList.add(18,"Ouchita Trail"));
+			System.out.println("Added to Index 55: ");
+			System.out.println(trailsList.add(55,"Ouchita Trail"));
 			System.out.println("-----------");		
 			
 			System.out.println(trailsList);

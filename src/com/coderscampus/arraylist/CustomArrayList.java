@@ -16,8 +16,8 @@ public class CustomArrayList<T> implements CustomList<T> {
 	}
 
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		if (index < 0 || index >= size) {
-			throw new ArrayIndexOutOfBoundsException("That index does not exist within the Array");
+		if (index < 0 || index > size) {
+			throw new ArrayIndexOutOfBoundsException("Index does not exist");
 		} else {
 
 			for (int i = size; i > index; i--) {
@@ -66,14 +66,9 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 			items = Arrays.copyOf(items, size);
 
-//		System.out.println(Arrays.toString(items));
+			System.out.println(Arrays.toString(items));
 			return itemToRemove;
 		}
-	}
-
-	@Override
-	public String toString() {
-		return "Items: " + Arrays.toString(items) + "\nSize: " + size;
 	}
 
 }
