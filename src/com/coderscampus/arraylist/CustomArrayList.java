@@ -13,21 +13,21 @@ public class CustomArrayList<T> implements CustomList<T> {
 		}
 		items[size++] = item;
 		return true;
-
 	}
 
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
 		if (index < 0 || index > size) {
 			throw new IndexOutOfBoundsException("Out of Bounds");
 		} else {
+
 			for (int i = size; i > index; i--) {
-	            items[i] = items[i-1];
-	        }
-			
+				items[i] = items[i - 1];
+			}
+
 			items[index] = item;
 			size++;
-			items = Arrays.copyOf(items, size - 1);
-			
+			items = Arrays.copyOf(items, size);
+
 			System.out.println(Arrays.toString(items));
 		}
 		return true;
@@ -58,8 +58,6 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 		System.out.println(Arrays.toString(items));
 		System.out.println("-----------");
-		System.out.println("Removed Item: ");
-		System.out.println(itemToRemove);
 		return itemToRemove;
 	}
 

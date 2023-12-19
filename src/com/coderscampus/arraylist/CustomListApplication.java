@@ -32,16 +32,21 @@ public class CustomListApplication {
 				System.out.println(trailsList.get(i));
 			}
 
-//			System.out.println("-----------");
-//			System.out.println("Array Size: ");
-//			System.out.println(trailsList.getSize());
-//			System.out.println("-----------");
-//
-//			System.out.println("Get Indexed Item: ");
-//			System.out.println(trailsList.get(17));
+			System.out.println("-----------");
+			System.out.println("Array Size: ");
+			System.out.println(trailsList.getSize());
+			System.out.println("-----------");
+
+			System.out.println("Get Indexed Item: ");
+			System.out.println(trailsList.get(17));
 			
 			System.out.println("-----------");
 			System.out.println(trailsList.remove(9));
+			
+			System.out.println("-----------");
+			System.out.println(trailsList.add(3,"String"));
+			
+			
 		}
 
 }
