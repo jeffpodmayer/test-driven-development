@@ -30,10 +30,11 @@ public class CustomArrayList<T> implements CustomList<T> {
 			size++;
 
 			items[index] = item;
-		//	items = Arrays.copyOf(items, size);
+			items = Arrays.copyOf(items, size);
 
-			System.out.println(Arrays.toString(items));
+			
 		}
+		System.out.println(Arrays.toString(items));
 		return true;
 	}
 

@@ -48,6 +48,38 @@ public class CustomListApplication {
 			System.out.println(trailsList.add(5,"Eagles 33"));
 			System.out.println("-----------");
 			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
+			System.out.println("Added to Index 5: ");
+			System.out.println(trailsList.add(5,"Eagles 33"));
+			System.out.println("-----------");
+			
 			System.out.println("Get Item: ");
 			System.out.println(trailsList.get(5));
 			System.out.println("-----------");

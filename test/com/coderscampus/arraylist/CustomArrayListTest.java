@@ -63,3 +63,5 @@ class CustomArrayListTest {
 	}
 }
 
+// Test for removing an item at the end of the list 
+// Test for removing item at the beginning
