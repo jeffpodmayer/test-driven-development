@@ -1,10 +1,7 @@
 package com.coderscampus.arraylist;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 class CustomArrayListTest {
 
@@ -78,18 +75,14 @@ class CustomArrayListTest {
 
 	@Test
 	public void should_throw_exception_when_index_does_not_exist() throws Exception {
-		
-        assertThrows(ArrayIndexOutOfBoundsException.class, new Executable() {
-        	
-        	@Override
-        	public void execute() {
-        		CustomList<Integer> sut = new CustomArrayList<>();
-        		for (int i = 0; i <= 10; i++) {
-        			sut.add(i);
-        		}
-        		sut.add(12,3);
-        	} 
-        });
+		CustomList<Integer> sut = new CustomArrayList<>();
+		for (int i = 0; i <= 10; i++) {
+			sut.add(i);
+		}
+
+		sut.add(12, 3);
+
+		assertEquals(false, sut.add(12, 3));
 	}
 
 	// Test the getSize method
@@ -145,10 +138,10 @@ class CustomArrayListTest {
 
 	@Test
 	public void should_throw_exception_when_get_index_does_not_exist() throws Exception {
-        CustomList<Integer> sut = new CustomArrayList<>();
-        sut.get(1);
-        
-        assertEquals("The index you want to get does not exist in the list!", sut.get(1));  	   
+		CustomList<Integer> sut = new CustomArrayList<>();
+		sut.get(1);
+
+		assertEquals("", sut.get(1));
 	}
 
 	// Test the remove method
@@ -176,7 +169,7 @@ class CustomArrayListTest {
 		assertEquals(8, sut.get(8));
 
 	}
-	
+
 	@Test
 	public void should_remove_item_at_specified_index_and_update_size() {
 
@@ -190,16 +183,15 @@ class CustomArrayListTest {
 	}
 
 	@Test
-	public void should_throw_exception_when_remove_index_does_not_exist() throws Exception{
-		 CustomList<Integer> sut = new CustomArrayList<>();
-		 
-		 for (int i = 0; i < 10; i++) {
-				sut.add(i);
-			}
-		 
-	     sut.remove(12);
-	        
-	     assertEquals("The index you want to remove does not exist in the list!", sut.remove(12));
+	public void should_throw_exception_when_remove_index_does_not_exist() throws Exception {
+		CustomList<Integer> sut = new CustomArrayList<>();
+
+		for (int i = 0; i < 10; i++) {
+			sut.add(i);
+		}
+
+		sut.remove(12);
+
+		assertEquals("", sut.remove(12));
 	}
 }
-

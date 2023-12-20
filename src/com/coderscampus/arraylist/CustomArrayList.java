@@ -14,28 +14,30 @@ public class CustomArrayList<T> implements CustomList<T> {
 		items[size++] = item;
 		return true;
 	}
-	
-	//Add try-catch block to this block of code
+
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		if (index < 0 || index > size) {
-			System.out.println("That index does not exist");
-			throw new ArrayIndexOutOfBoundsException("AddMethod: Index does not exist");
-		} else {
+		try {
+			if (index < 0 || index > size) {
+				throw new ArrayIndexOutOfBoundsException("AddMethod: Index does not exist");
+			} else {
 
-			for (int i = size; i > index; i--) {
-				if (size == items.length) {
-					items = Arrays.copyOf(items, items.length * 2);
+				for (int i = size; i > index; i--) {
+					if (size == items.length) {
+						items = Arrays.copyOf(items, items.length * 2);
 
+					}
+					items[i] = items[i - 1];
 				}
-				items[i] = items[i - 1];
+				size++;
+				items[index] = item;
+				items = Arrays.copyOf(items, size);
+				return true;
 			}
-			size++;
-
-			items[index] = item;
-			items = Arrays.copyOf(items, size);
-
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("That index you want to ADD to does not exist in the list!");
+			return false;
 		}
-		return true;
+
 	}
 
 	@Override
@@ -54,7 +56,8 @@ public class CustomArrayList<T> implements CustomList<T> {
 				return (T) items[index];
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			return (T) "The index you want to get does not exist in the list!";
+			System.out.println("The index you want to GET does not exist in the list!");
+			return (T) "";
 		}
 	}
 
@@ -71,13 +74,12 @@ public class CustomArrayList<T> implements CustomList<T> {
 				}
 
 				size--;
-
 				items = Arrays.copyOf(items, size);
-
 				return itemToRemove;
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			return (T) "The index you want to remove does not exist in the list!";
+			System.out.println("The index you want to REMOVE does not exist in the list!");
+			return (T) "";
 		}
 	}
 }
