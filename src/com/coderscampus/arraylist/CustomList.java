@@ -51,5 +51,7 @@ public interface CustomList<T> {
      * @throws IndexOutOfBoundsException
      */
     T remove(int index) throws IndexOutOfBoundsException;
+    
+    
 
 }

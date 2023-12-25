@@ -7,11 +7,20 @@ public class CustomArrayList<T> implements CustomList<T> {
 	int size = 0;
 
 	@Override
-	public boolean add(T item) {
+	public boolean add(T item) {     //this needs to be fixed......I NEED HELP.
 		if (size == items.length) {
 			items = Arrays.copyOf(items, items.length * 2);
+		} else if (size < items.length) {
+			items[size++] = item;
+		} else if (size == items.length) {
+			int index = 0;
+			while (items[index] != null) {
+				index++;
+				if (items[index] == null) {
+					items[index] = item;
+				}
+			}
 		}
-		items[size++] = item;
 		return true;
 	}
 
@@ -69,12 +78,15 @@ public class CustomArrayList<T> implements CustomList<T> {
 			} else {
 				T itemToRemove = (T) items[index];
 
+				items[index] = null;
+
 				for (int i = index; i < size - 1; i++) {
 					items[i] = items[i + 1];
 				}
 
-				size--;
 				items = Arrays.copyOf(items, size);
+	//			System.out.println(Arrays.toString(items));
+
 				return itemToRemove;
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -82,4 +94,10 @@ public class CustomArrayList<T> implements CustomList<T> {
 			return (T) "";
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "CustomArrayList [items=" + Arrays.toString(items) + ", size=" + size + "]";
+	}
+
 }

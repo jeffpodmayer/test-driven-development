@@ -146,32 +146,33 @@ class CustomArrayListTest {
 
 	// Test the remove method
 	@Test
-	public void should_remove_item_from_beginning_of_list_and_update_size() {
+	public void should_remove_item_from_beginning_of_list() {
 		CustomList<Integer> sut = new CustomArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
 			sut.add(i);
 		}
 		sut.remove(0);
-		assertEquals(9, sut.getSize());
+		assertEquals(10, sut.getSize());
 		assertEquals(1, sut.get(0));
 	}
 
 	@Test
-	public void should_remove_item_at_the_end_of_the_list_and_update_size() {
+	public void should_remove_item_at_the_end_of_the_list() {
 		CustomList<Integer> sut = new CustomArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
 			sut.add(i);
 		}
 		sut.remove(9);
-		assertEquals(9, sut.getSize());
+		assertEquals(sut.get(9),null); 
+		assertEquals(10, sut.getSize());
 		assertEquals(8, sut.get(8));
 
 	}
 
 	@Test
-	public void should_remove_item_at_specified_index_and_update_size() {
+	public void should_remove_item_at_specified_index() {
 
 		CustomList<Integer> sut = new CustomArrayList<>();
 
@@ -179,7 +180,7 @@ class CustomArrayListTest {
 			sut.add(i);
 		}
 		sut.remove(8);
-		assertEquals(9, sut.getSize());
+		assertEquals(10, sut.getSize());
 	}
 
 	@Test
