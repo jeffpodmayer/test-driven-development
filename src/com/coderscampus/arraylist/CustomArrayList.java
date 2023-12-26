@@ -5,21 +5,23 @@ import java.util.Arrays;
 public class CustomArrayList<T> implements CustomList<T> {
 	Object[] items = new Object[10];
 	int size = 0;
-
+	int index = 0;
+	
 	@Override
-	public boolean add(T item) {     //this needs to be fixed......I NEED HELP.
-		if (size == items.length) {
-			items = Arrays.copyOf(items, items.length * 2);
-		} else if (size < items.length) {
-			items[size++] = item;
-		} else if (size == items.length) {
-			int index = 0;
-			while (items[index] != null) {
-				index++;
-				if (items[index] == null) {
-					items[index] = item;
-				}
-			}
+	public boolean add(T item) {	
+		
+		System.out.println(item);
+		
+//		while (index < items.length && items[index] != null) {
+//			
+//		}
+
+		if (items[index] == null) {
+			resizeArray(index);
+			items[index] = item;
+			size = index + 1;
+			index++;
+			
 		}
 		return true;
 	}
@@ -29,17 +31,15 @@ public class CustomArrayList<T> implements CustomList<T> {
 			if (index < 0 || index > size) {
 				throw new ArrayIndexOutOfBoundsException("AddMethod: Index does not exist");
 			} else {
-
-				for (int i = size; i > index; i--) {
+				for (int i = size; i > index;i--) {
 					if (size == items.length) {
 						items = Arrays.copyOf(items, items.length * 2);
 
 					}
 					items[i] = items[i - 1];
 				}
-				size++;
 				items[index] = item;
-				items = Arrays.copyOf(items, size);
+				size++;
 				return true;
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
@@ -59,7 +59,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public T get(int index) throws IndexOutOfBoundsException {
 		try {
-			if (index < 0 || index > size) {
+			if (index < 0 || index > items.length - 1) {
 				throw new ArrayIndexOutOfBoundsException("GetMethod: Index does not exist");
 			} else {
 				return (T) items[index];
@@ -73,7 +73,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@SuppressWarnings("unchecked")
 	public T remove(int index) throws IndexOutOfBoundsException {
 		try {
-			if (index < 0 || index >= size) {
+			if (index < 0 || index > size) {
 				throw new ArrayIndexOutOfBoundsException("RemoveMethod: Index does not exist");
 			} else {
 				T itemToRemove = (T) items[index];
@@ -84,8 +84,8 @@ public class CustomArrayList<T> implements CustomList<T> {
 					items[i] = items[i + 1];
 				}
 
-				items = Arrays.copyOf(items, size);
-	//			System.out.println(Arrays.toString(items));
+				items[size - 1] = null;
+				// System.out.println(Arrays.toString(items));
 
 				return itemToRemove;
 			}
@@ -98,6 +98,12 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public String toString() {
 		return "CustomArrayList [items=" + Arrays.toString(items) + ", size=" + size + "]";
+	}
+	
+	public void resizeArray(int index) {
+		if (index > items.length) {
+			items = Arrays.copyOf(items, items.length * 2);
+		}
 	}
 
 }
