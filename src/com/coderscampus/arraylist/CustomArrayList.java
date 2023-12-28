@@ -6,104 +6,103 @@ public class CustomArrayList<T> implements CustomList<T> {
 	Object[] items = new Object[10];
 	int size = 0;
 	int index = 0;
-	
-	@Override
-	public boolean add(T item) {	
-		
-		System.out.println(item);
-		
-//		while (index < items.length && items[index] != null) {
-//			
-//		}
 
-		if (items[index] == null) {
-			resizeArray(index);
-			items[index] = item;
-			size = index + 1;
-			index++;
-			
+	@Override
+	public boolean add(T item) {
+//		System.out.println("Index in add(): " + index);
+//		System.out.println("Size in add(): " + index);	
+//		
+//		System.out.println("Items.length in add() " + items.length);
+
+		if (index > items.length) {
+			items = Arrays.copyOf(items, items.length * 2);
 		}
+
+		if (index < items.length) {
+			items[index] = item;
+			size++;
+		} else {
+			for (int i = 0; i < items.length; i++) {
+				if (items[i] == null) {
+					items[i] = item;
+					index--;
+					break;
+				}
+			}
+		}
+		index++;
 		return true;
 	}
 
-	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		try {
-			if (index < 0 || index > size) {
-				throw new ArrayIndexOutOfBoundsException("AddMethod: Index does not exist");
-			} else {
-				for (int i = size; i > index;i--) {
-					if (size == items.length) {
-						items = Arrays.copyOf(items, items.length * 2);
+//		if (index < items.length) {
+//			items[index] = item;
+//			size = index + 1;
+//			index++;
+//		} else {
+//			resizeArray(index);
+//			items[index] = item;
+//			size = index + 1;
+//		}
+//	
+//		return true;
 
-					}
-					items[i] = items[i - 1];
-				}
-				items[index] = item;
-				size++;
-				return true;
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("That index you want to ADD to does not exist in the list!");
-			return false;
+	@Override
+	public boolean add(int index, T item) throws IndexOutOfBoundsException {
+
+		if (index < 0 || index > size) {
+			throw new ArrayIndexOutOfBoundsException();
 		}
 
+		if (size > items.length) {
+			items = Arrays.copyOf(items, items.length * 2);
+		}
+
+		for (int i = size; i > index; i--) {
+			items[i] = items[i - 1];
+		}
+
+		items[index] = item;
+		size++;
+		return true;
 	}
 
 	@Override
 	public int getSize() {
-		return size;
-
+		return this.items.length;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) throws IndexOutOfBoundsException {
-		try {
-			if (index < 0 || index > items.length - 1) {
-				throw new ArrayIndexOutOfBoundsException("GetMethod: Index does not exist");
-			} else {
-				return (T) items[index];
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("The index you want to GET does not exist in the list!");
-			return (T) "";
+
+		if (index < 0 || index > items.length - 1) {
+			throw new ArrayIndexOutOfBoundsException();
+		} else {
+			return (T) items[index];
 		}
 	}
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public T remove(int index) throws IndexOutOfBoundsException {
-		try {
-			if (index < 0 || index > size) {
-				throw new ArrayIndexOutOfBoundsException("RemoveMethod: Index does not exist");
-			} else {
-				T itemToRemove = (T) items[index];
-
-				items[index] = null;
-
-				for (int i = index; i < size - 1; i++) {
-					items[i] = items[i + 1];
-				}
-
-				items[size - 1] = null;
-				// System.out.println(Arrays.toString(items));
-
-				return itemToRemove;
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("The index you want to REMOVE does not exist in the list!");
-			return (T) "";
+		if (index < 0 || index > size) {
+			throw new ArrayIndexOutOfBoundsException();
 		}
+
+		T itemToRemove = (T) items[index];
+
+		items[index] = null;
+
+		for (int i = index; i < size - 1; i++) {
+			items[i] = items[i + 1];
+		}
+		items[size - 1] = null;
+		return itemToRemove;
+
 	}
 
 	@Override
 	public String toString() {
-		return "CustomArrayList [items=" + Arrays.toString(items) + ", size=" + size + "]";
+		return "CustomArrayList [items=" + Arrays.toString(items) + ", Array Capacity=" + this.items.length + "]";
 	}
-	
-	public void resizeArray(int index) {
-		if (index > items.length) {
-			items = Arrays.copyOf(items, items.length * 2);
-		}
-	}
-
 }

@@ -15,23 +15,79 @@ class CustomArrayListTest {
 		Integer expectedSize = sut.getSize();
 
 		assertEquals(1, expectedResult);
-		assertEquals(1, expectedSize);
+		assertEquals(10, expectedSize);
 	}
 
 	@Test
-	public void should_resize_list() { //don't think is testign what I need it to be testing
+	public void should_NOT_resize_list_at_ten_items() { 
 		CustomList<Integer> sut = new CustomArrayList<>();
 		
-		for (int i = 0; i <= 11; i++) {
+		for (int i = 0; i < 10; i++) {
 			sut.add(i);
 		}
 		
-		assertEquals(12, sut.getSize());
+		sut.remove(9); 
+		sut.remove(7); 
+		sut.add(1000);
+		sut.add(1001); 
 		
+		assertEquals(10, sut.getSize());
+		assertEquals(1000, sut.get(8));
+		assertEquals(1001, sut.get(9));		
+	}
+	
+	@Test
+	public void should_NOT_resize_list_when_adding_at_index_when_length_is_under_10() { 
+		CustomList<Integer> sut = new CustomArrayList<>();
+		
+		for (int i = 0; i < 10; i++) {
+			sut.add(i);
+		}
+		
+		sut.remove(9); 
+		sut.remove(7); 
+		sut.add(1000);
+		sut.add(7,1001); 
+		
+		assertEquals(10, sut.getSize());
+		assertEquals(1000, sut.get(9));
+		assertEquals(8, sut.get(8));
+		assertEquals(1001, sut.get(7));	
+		
+	}
+	
+	@Test
+	public void should_resize_list_at_eleven_items() { 
+		CustomList<Integer> sut = new CustomArrayList<>();
+		
+		for (int i = 0; i < 10; i++) {
+			sut.add(i);
+		}
+		
+		sut.add(1000);
+		
+		assertEquals(20, sut.getSize());
 		
 	}
 
 	// Tests adding items at various parts of array
+	@Test
+	public void should_add_item_at_null() {
+		CustomList<Integer> sut = new CustomArrayList<>();
+
+		for (int i = 0; i < 10; i++) {
+			sut.add(i);
+		}
+		
+		sut.remove(9); 
+		sut.remove(7); 
+		sut.add(1000);
+		sut.add(2000);
+		
+		assertEquals(1000, sut.get(8));
+		assertEquals(2000, sut.get(9));
+		assertEquals(10, sut.getSize());
+	}
 	@Test
 	public void should_add_item_to_beginning_of_list() {
 		CustomList<Integer> sut = new CustomArrayList<>();
@@ -49,12 +105,12 @@ class CustomArrayListTest {
 	public void should_add_item_to_specified_index() {
 		CustomList<Integer> sut = new CustomArrayList<>();
 
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 0; i < 10; i++) {
 			sut.add(i);
 		}
 		sut.add(4, 5);
 
-		assertEquals(11, sut.getSize());
+		assertEquals(20, sut.getSize());
 		assertEquals(5, sut.get(4));
 	}
 
@@ -62,14 +118,14 @@ class CustomArrayListTest {
 	public void should_add_element_to_end_of_list() {
 		CustomList<Integer> sut = new CustomArrayList<>();
 
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 0; i < 10; i++) {
 			sut.add(i);
 		}
 
-		sut.add(10, 1);
+		sut.add(9, 1);
 		
-		//assertEquals(1, sut.get(10));
-		assertEquals(10, sut.getSize());
+		assertEquals(1, sut.get(9));
+		assertEquals(20, sut.getSize());
 	}
 
 	@Test
@@ -91,7 +147,7 @@ class CustomArrayListTest {
 
 		sut.getSize();
 
-		assertEquals(0, sut.getSize());
+		assertEquals(10, sut.getSize());
 	}
 
 	@Test
@@ -131,7 +187,7 @@ class CustomArrayListTest {
 		sut.remove(0);
 		sut.add(0, 5);
 		sut.get(0);
-
+		
 		assertEquals(5, sut.get(0));
 	}
 
@@ -152,6 +208,7 @@ class CustomArrayListTest {
 			sut.add(i);
 		}
 		sut.remove(0);
+		
 		assertEquals(10, sut.getSize());
 		assertEquals(1, sut.get(0));
 	}
@@ -163,7 +220,9 @@ class CustomArrayListTest {
 		for (int i = 0; i < 10; i++) {
 			sut.add(i);
 		}
+		
 		sut.remove(9);
+		
 		assertEquals(sut.get(9),null); 
 		assertEquals(10, sut.getSize());
 		assertEquals(8, sut.get(8));
@@ -179,6 +238,9 @@ class CustomArrayListTest {
 			sut.add(i);
 		}
 		sut.remove(8);
+		
+		assertEquals(9, sut.get(8));
+		assertEquals(null,sut.get(9));
 		assertEquals(10, sut.getSize());
 	}
 
