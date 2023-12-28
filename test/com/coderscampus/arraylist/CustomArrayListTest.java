@@ -85,7 +85,7 @@ class CustomArrayListTest {
 	}
 
 	@Test
-	public void should_add_item_at_first_null_after_resizing () {
+	public void should_add_item_at_first_null_after_multiple_methods() {
 		CustomList<Integer> sut = new CustomArrayList<>();
 		
 		for (int i = 0; i < 10; i++) {
