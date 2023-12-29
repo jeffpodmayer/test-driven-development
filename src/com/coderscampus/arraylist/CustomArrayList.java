@@ -12,8 +12,8 @@ public class CustomArrayList<T> implements CustomList<T> {
 //		System.out.println("Index in add(): " + index);
 //		System.out.println("Size in add(): " + index);	
 //		System.out.println("Items.length in add() " + items.length);
-
-		if (size < items.length) {
+		
+		if (size < items.length && items[size] == null) {
 			items[size] = item;
 			size++;
 		} else if (size == items.length && doesNotContainNull(items)) {
@@ -29,6 +29,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 				}
 			}
 		}
+		
 		return true;
 	}
 
@@ -76,7 +77,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 				items[i] = items[i + 1];
 			}
 			items[size - 1] = null;
-			// System.out.println(Arrays.toString(items));
+			size--;
 			return itemToRemove;
 		}
 	}
@@ -87,9 +88,6 @@ public class CustomArrayList<T> implements CustomList<T> {
 	}
 
 	public void resizeArray(int index) {
-//		System.out.println("Index: " + index);
-//		System.out.println("Items.length: " + items.length);
-//		System.out.println("Size: " + size);
 		if (index + 1 > items.length) {
 			items = Arrays.copyOf(items, items.length * 2);
 		}
@@ -103,4 +101,5 @@ public class CustomArrayList<T> implements CustomList<T> {
 	    }
 	    return true;
 	}
+	
 }

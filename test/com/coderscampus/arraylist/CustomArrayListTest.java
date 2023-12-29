@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 class CustomArrayListTest {
 
 	// Tests adding and resizing array
-	
 	@Test
 	public void should_add_one_item_to_list() {
 		CustomList<Integer> sut = new CustomArrayList<>();
@@ -99,12 +98,13 @@ class CustomArrayListTest {
 		sut.add(7, 1002);
 		sut.add(7, 89);
 		sut.remove(7); 
-		sut.add(2000); ///////////
+		sut.add(2000); 
 		
 		assertEquals(20, sut.getSize());
 		assertEquals(2000, sut.get(11));
 		
 	}
+	
 	// Tests adding items at various parts of array
 	@Test
 	public void should_add_item_at_null() {
