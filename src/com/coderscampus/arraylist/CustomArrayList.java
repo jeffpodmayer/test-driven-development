@@ -8,15 +8,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) {
-		if (size < items.length) {
-			items[size] = item;
-			size++;
-		} else if (size == items.length && doesNotContainNull(items)) {
-			resizeArray(size);
-			items[size] = item;
-			size++;
-		}
-		return true;
+		return add(size, item);
 	}
 
 	@Override

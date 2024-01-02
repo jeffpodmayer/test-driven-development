@@ -1,7 +1,9 @@
 package com.coderscampus.arraylist;
 
-import static org.junit.Assert.fail;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 class CustomArrayListTest {
@@ -174,13 +176,8 @@ class CustomArrayListTest {
 		for (int i = 0; i < 10; i++) {
 			sut.add(i);
 		}
-
-		try {
-			sut.add(12, 3);
-			fail("Expected ArrayIndexOutOfBoundsException was not thrown");
-		} catch (IndexOutOfBoundsException e) {
-
-		}
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.add(12,3));
 	}
 
 	// Test the getSize method
@@ -243,13 +240,7 @@ class CustomArrayListTest {
 			sut.add(i);
 		}
 
-		try {
-			assertEquals(10, sut.getSize());
-			sut.get(12);
-			fail("Expected ArrayIndexOutOfBoundsException was not thrown");
-		} catch (IndexOutOfBoundsException e) {
-
-		}
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.get(12));
 	}
 
 	// Test the remove method
@@ -304,12 +295,6 @@ class CustomArrayListTest {
 			sut.add(i);
 		}
 
-		try {
-			assertEquals(10, sut.getSize());
-			sut.remove(12);
-			fail("Expected ArrayIndexOutOfBoundsException was not thrown");
-		} catch (IndexOutOfBoundsException e) {
-
-		}
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.remove(12));
 	}
 }
